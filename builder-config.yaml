@@ -1,0 +1,14 @@
+dist:
+  name: otelcol
+  description: Custom OTel Collector distribution
+  output_path: ./otelcol-dev
+  otelcol_version: 0.100.0
+
+receivers:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filestatsreceiver v0.100.0
+
+processors:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.100.0
+
+exporters:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v0.100.0

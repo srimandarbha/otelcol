@@ -1,0 +1,22 @@
+receivers:
+  filestats:
+    include: /var/log/syslog*
+    collection_interval: 5s
+
+processors:
+  attributes:
+    actions:
+      - key: host.name
+        value: "$HOSTNAME"
+        action: insert
+
+exporters:
+  file:
+    path: /tmp/temper.txt
+
+service:
+  pipelines:
+    metrics:
+      receivers: [filestats]
+      processors: [attributes]
+      exporters: [file]
