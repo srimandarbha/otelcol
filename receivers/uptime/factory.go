@@ -16,18 +16,16 @@ func NewFactory() receiver.Factory {
 	return receiver.NewFactory(
 		metadata.Type,
 		createDefaultConfig,
-		receiver.WithMetrics(CreateVmStatReceiver, component.StabilityLevelDevelopment),
+		receiver.WithMetrics(UptimeReceiver, component.StabilityLevelDevelopment),
 	)
 }
 
 func createDefaultConfig() component.Config {
 	return &Config{
-		Delay: 1,
-		Count: 1,
 	}
 }
 
-func CreateVmStatReceiver(
+func UptimeReceiver(
 	_ context.Context,
 	settings receiver.CreateSettings,
 	cfg component.Config,
