@@ -1,4 +1,4 @@
-module github.com/srimandarbha/uptime
+module github.com/srimandarbha/otelcol
 
 go 1.22.0
 
