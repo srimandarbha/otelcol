@@ -10,8 +10,8 @@ processors:
         action: insert
 
 exporters:
-  file:
-    path: /tmp/temper.txt
+  debug:
+    verbosity: detailed
 
 service:
   pipelines:
