@@ -1,4 +1,4 @@
-module github.com/srimandarbha/otelcol
+module github.com/srimandarbha/otelcol/receivers/uptime
 
 go 1.22.0
 
