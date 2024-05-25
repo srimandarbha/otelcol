@@ -1,7 +1,0 @@
-type: uptime
-
-status:
-  class: receiver
-  stability:
-    alpha: [metrics]
-  distributions: [contrib]
