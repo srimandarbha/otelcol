@@ -1,6 +1,5 @@
 receivers:
-  filestats:
-    include: /var/log/syslog*
+  uptime:
     collection_interval: 5s
 
 processors:
@@ -17,6 +16,6 @@ exporters:
 service:
   pipelines:
     metrics:
-      receivers: [filestats]
+      receivers: [uptime]
       processors: [attributes]
       exporters: [file]
