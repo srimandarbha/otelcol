@@ -2,16 +2,16 @@ dist:
   name: otelcol
   description: Custom OTel Collector distribution
   output_path: ./otelcol-dev
-  otelcol_version: 0.100.0
+  otelcol_version: 0.101.0
 
 receivers:
-  - gomod: github.com/srimandarbha/otelcol/receivers/uptime v0.100.0
+  - gomod: github.com/srimandarbha/otelcol/receivers/uptime v0.101.0
     import: github.com/srimandarbha/otelcol/receivers/uptime
     name: 'uptime'
     path: './receivers/uptime'
 
 processors:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.100.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.101.0
 
 exporters:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileexporter v0.100.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/fileexporter v0.101.0

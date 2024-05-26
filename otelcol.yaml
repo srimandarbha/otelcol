@@ -10,12 +10,12 @@ processors:
         action: insert
 
 exporters:
-  debug:
-    verbosity: detailed
+  file:
+    path: /tmp/metric.log
 
 service:
   pipelines:
     metrics:
       receivers: [uptime]
       processors: [attributes]
-      exporters: [debug]
+      exporters: [file]
