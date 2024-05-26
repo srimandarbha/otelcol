@@ -4,28 +4,47 @@
 package uptime
 
 import (
-	"fmt"
 	"io/ioutil"
 	"strconv"
 	"strings"
 	"time"
+
+	"go.uber.org/zap"
 )
 
-func getUptime() (time.Duration, error) {
+type upTime struct {
+	minutes time.Duration
+}
+
+type upTimeReader struct {
+	logger *zap.Logger
+}
+
+func newUpTimeReader(logger *zap.Logger) *upTimeReader {
+	return &upTimeReader{
+		logger: logger,
+	}
+}
+
+func (u *upTimeReader) getUptime() (*upTime, error) {
 	data, err := ioutil.ReadFile("/proc/uptime")
+	var upTime upTime
+
 	if err != nil {
-		return 0, err
+		return &upTime, err
 	}
 
 	fields := strings.Fields(string(data))
 	if len(fields) < 1 {
-		return 0, fmt.Errorf("unexpected format of /proc/uptime")
+		return &upTime, err
 	}
 
 	seconds, err := strconv.ParseFloat(fields[0], 64)
 	if err != nil {
-		return 0, err
+		return &upTime, err
 	}
 
-	return time.Duration(seconds) * time.Second, nil
+	upTime.minutes = time.Duration(seconds) * time.Second
+
+	return &upTime, nil
 }

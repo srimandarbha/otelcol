@@ -21,8 +21,7 @@ func NewFactory() receiver.Factory {
 }
 
 func createDefaultConfig() component.Config {
-	return &Config{
-	}
+	return &Config{}
 }
 
 func UptimeReceiver(
@@ -39,9 +38,9 @@ func UptimeReceiver(
 		return nil, fmt.Errorf(em)
 	}
 
-	mb := metadata.NewMetricsBuilder(config.MetricsBuilderConfig, settings)
+	//mb := metadata.NewMetricsBuilder(config.ScraperControllerOption, settings)
 
-	ns := newScraper(config, mb, logger)
+	ns := newScraper(mb, logger)
 	scraper, err := scraperhelper.NewScraper(metadata.Type, ns.scrape)
 	if err != nil {
 		logger.Error("failed to create scraper", zap.Error(err))
