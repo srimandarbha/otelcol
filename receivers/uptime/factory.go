@@ -38,17 +38,17 @@ func UptimeReceiver(
 		return nil, fmt.Errorf(em)
 	}
 
-	//mb := metadata.NewMetricsBuilder(config.ScraperControllerOption, settings)
+	mb := metadata.NewMetricsBuilder(config.MetricsBuilderConfig, settings)
 
 	ns := newScraper(mb, logger)
-	scraper, err := scraperhelper.NewScraper(metadata.Type, ns.scrape)
+	scraper, err := scraperhelper.NewScraper(metadata.Type.String(), ns.scrape)
 	if err != nil {
 		logger.Error("failed to create scraper", zap.Error(err))
 		return nil, err
 	}
 
 	return scraperhelper.NewScraperControllerReceiver(
-		&config.ScraperControllerSettings,
+		&config.ControllerConfig,
 		settings,
 		consumer,
 		scraperhelper.AddScraper(scraper),
